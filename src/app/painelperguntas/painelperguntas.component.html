@@ -1,0 +1,55 @@
+<nav class="navbar">
+  <span class="navbar-brand mb-0 h1">Perguntas e Respostas</span>
+</nav>
+
+<div class="container">
+
+  <div class="juntobotron">
+
+    <div class="row">
+
+      <div *ngIf="Vitoria != undefined else Perguntas">
+
+        <div *ngIf="Vitoria else Derrota">
+
+          <div class="alert alert-success">
+            <strong>Sucesso!</strong>
+          </div>
+
+        </div>
+
+        <ng-template #Derrota>
+
+          <div class="alert alert-danger">
+            <strong>Danger!</strong>
+          </div>
+
+        </ng-template>
+
+        <a href="#" class="btn btn-warning" (click)="voltar();">Voltar!</a>
+
+      </div>
+
+      <ng-template #Perguntas>
+
+        <div (change)="atualizarResposta($event)">
+
+          {{PerguntaAtual.pergunta}}
+          <br/>
+
+          <div *ngFor="let opcao of PerguntaAtual.opcoes">
+            <input type="radio" name="pergunta" [value]="opcao.resposta" />{{opcao.resposta}}
+          </div>
+
+        </div>
+
+        <br />
+        <a href="#" (click)="enviarResposta();" class="btn btn-success">Enviar</a>
+
+      </ng-template>
+
+    </div>
+
+  </div>
+
+</div>
